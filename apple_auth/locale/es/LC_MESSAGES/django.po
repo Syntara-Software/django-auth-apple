@@ -1,0 +1,54 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-11-17 13:02-0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: apple_auth/apps.py:8
+msgid "Apple Auth"
+msgstr "Apple Auth"
+
+#: apple_auth/auth.py:48
+msgid "It wasn't possible to get the account details"
+msgstr "No fue posible obtener los detalles de la cuenta"
+
+#: apple_auth/auth.py:51
+msgid "It wasn't possible to validate the account"
+msgstr "No fue posible validar la cuenta"
+
+#: apple_auth/models.py:9
+msgid "User"
+msgstr "Usuario"
+
+#: apple_auth/models.py:10
+msgid "Subject"
+msgstr "Sujeto"
+
+#: apple_auth/models.py:11
+msgid "Token"
+msgstr "Token"
+
+#: apple_auth/models.py:12
+msgid "Access token"
+msgstr "Token de acceso"
+
+#: apple_auth/models.py:13
+msgid "Refresh token"
+msgstr "Token de actualización"
+
+#: apple_auth/models.py:14
+msgid "Created"
+msgstr "Creado"

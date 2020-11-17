@@ -1,0 +1,1 @@
+recursive-include apple_auth/locale *.mo
