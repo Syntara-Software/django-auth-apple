@@ -96,4 +96,4 @@ class AppleAuth(ABC):
 
     def get_user_info(self, json_response):
         if id_token := json_response.get('id_token', None):
-            return jwt.decode(id_token, '', algorithms=['ES256'], verify=False)
+            return jwt.decode(id_token, '', options={"verify_signature": False})
