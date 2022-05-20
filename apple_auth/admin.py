@@ -6,4 +6,4 @@ from apple_auth.models import AppleUser
 
 @register(AppleUser)
 class AppleUserAdmin(admin.ModelAdmin):
-    list_display = ['subject', 'user']
+    list_display = ['subject', 'user', 'created']

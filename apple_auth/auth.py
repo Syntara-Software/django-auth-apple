@@ -13,8 +13,8 @@ from core.exceptions import UserInputError
 
 class AppleAuth(ABC):
 
-    def __init__(self):
-        self.client_id = settings.APPLE['CLIENT_ID']
+    def __init__(self, client_id=settings.APPLE['CLIENT_ID']):
+        self.client_id = client_id
 
     def login_or_signup(self, credentials: AppleCredentials):
         response, info = self.validate_access_token(credentials.token)
@@ -47,7 +47,7 @@ class AppleAuth(ABC):
         if not (info := self.get_user_info(response)):
             raise UserInputError(_("It wasn't possible to get the account details"),
                                  'apple.invalid_id_token')
-        if info['aud'] != settings.APPLE['CLIENT_ID']:
+        if info['aud'] != self.client_id:
             raise UserInputError(_("It wasn't possible to validate the account"),
                                  'apple.invalid_client')
         return response, info
@@ -89,7 +89,7 @@ class AppleAuth(ABC):
             'iat': timezone.now(),
             'exp': timezone.now() + timedelta(days=180),
             'aud': 'https://appleid.apple.com',
-            'sub': settings.APPLE['CLIENT_ID'],
+            'sub': self.client_id,
         }
         return jwt.encode(payload, settings.APPLE['PRIVATE_KEY'], algorithm='ES256',
                           headers=headers)

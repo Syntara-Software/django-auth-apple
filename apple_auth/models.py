@@ -13,6 +13,12 @@ class AppleUser(models.Model):
     refreshToken = models.TextField(_('Refresh token'))
     created = models.DateTimeField(_('Created'), auto_now_add=True)
 
+    def __str__(self):
+        return f'{self.user.username} [{self.subject}]'
+
+    class Meta:
+        ordering = ['-created']
+
 
 @dataclass
 class NameComponents:

@@ -4,7 +4,7 @@ setup(
     install_requires=[
         'Django',
         'djangorestframework',
-        'PyJWT==1.7.1',
-        'requests==2.25.0',
+        'PyJWT==2.4.0',
+        'requests==2.27.1',
     ]
 )
