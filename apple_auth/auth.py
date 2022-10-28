@@ -97,3 +97,18 @@ class AppleAuth(ABC):
     def get_user_info(self, json_response):
         if id_token := json_response.get('id_token', None):
             return jwt.decode(id_token, '', options={"verify_signature": False})
+
+    def revoke_token(self, token, hint=None):
+        url = 'https://appleid.apple.com/auth/revoke'
+        headers = {'Content-Type': "application/x-www-form-urlencoded"}
+        data = {
+            'client_id': self.client_id,
+            'client_secret': self.get_client_secret(),
+            'token': token,
+        }
+        if hint:
+            data['token_type_hint'] = hint
+        response = requests.post(url, data, headers=headers)
+        response.raise_for_status()
+
+        return response.json()
