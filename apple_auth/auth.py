@@ -110,5 +110,3 @@ class AppleAuth(ABC):
             data['token_type_hint'] = hint
         response = requests.post(url, data, headers=headers)
         response.raise_for_status()
-
-        return response.json()
