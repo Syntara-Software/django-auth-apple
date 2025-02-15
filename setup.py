@@ -5,6 +5,6 @@ setup(
         'Django',
         'djangorestframework',
         'PyJWT==2.4.0',
-        'requests==2.27.1',
+        'requests==2.32.3',
     ]
 )

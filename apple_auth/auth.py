@@ -16,10 +16,13 @@ class AppleAuth(ABC):
     def __init__(self, client_id=settings.APPLE['CLIENT_ID']):
         self.client_id = client_id
 
+    def get_apple_user(self, info) -> AppleUser:
+        return AppleUser.objects.get(subject=info['sub'])
+
     def login_or_signup(self, credentials: AppleCredentials):
         response, info = self.validate_access_token(credentials.token)
         try:
-            apple_user = AppleUser.objects.get(subject=info['sub'])
+            apple_user = self.get_apple_user(info)
             return self._update_token(credentials, response, apple_user), False
         except AppleUser.DoesNotExist:
             return self.signup(info, response, credentials), True
@@ -30,6 +33,15 @@ class AppleAuth(ABC):
         apple_user.refreshToken = response.get('refresh_token')
         apple_user.save()
         return apple_user
+
+    def login(self, credentials: AppleCredentials) -> AppleUser:
+        response, info = self.validate_access_token(credentials.token)
+        try:
+            apple_user = self.get_apple_user(info)
+            return self._update_token(credentials, response, apple_user)
+        except AppleUser.DoesNotExist:
+            raise UserInputError(_('It was not possible to find your account'), 'apple.not_registered',
+                                 _('Please verify that you completed your registration'))
 
     def signup(self, info, response, credentials: AppleCredentials):
         user = self.get_user(credentials.name, info['email'])
